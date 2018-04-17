@@ -1,0 +1,32 @@
+{
+  "name": "iag-address-parser",
+  "description": "Freeform Street Address Parser for iag",
+  "main": "addressit.js",
+  "author": "Sujin Yang <sujin.sj.yang@gmail.com>",
+  "version": "2018.1.5",
+  "stability": "stable",
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@chuck.auiag.corp:7999/customer/pelias-addressit.git"
+  },
+  "dependencies": {
+    "cog": "^1.0.0"
+  },
+  "devDependencies": {
+    "tape": "^4.0.1"
+  },
+  "scripts": {
+    "test": "node test/all.js",
+    "gendocs": "gendocs > README.md"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "keywords": [
+    "parser",
+    "street",
+    "address",
+    "geo"
+  ],
+  "license": "MIT"
+}

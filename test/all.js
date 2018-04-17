@@ -1,0 +1,2 @@
+require('./locale-en-AU');
+
