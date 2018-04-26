@@ -1,0 +1,37 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: >-
+  A simple backend (read/write to DynamoDB) with a RESTful API endpoint using
+  Amazon API Gateway.
+Resources:
+  HackdayAddressparser:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: parser.handler
+      Runtime: nodejs6.10
+      Description: >-
+        Address Parser API for Hackday
+      MemorySize: 512
+      Timeout: 10
+      Role: 'arn:aws:iam::749397145246:role/addressParserLambdaRole'
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /Hackday_Address_parser
+            Method: ANY
+        Api2:
+          Type: Api
+          Properties:
+            Path: /MyResource
+            Method: ANY
+      Tags:
+        'lambda-console:blueprint': microservice-http-endpoint
+    ConfigLambdaPermission:
+      Type: "AWS::Lambda::Permission"
+      DependsOn:
+      - HackdayAddressparser
+      Properties:
+        Action: lambda:HackdayAddressparser
+        FunctionName: !Ref HackdayAddressparser
+        Principal: apigateway.amazonaws.com
