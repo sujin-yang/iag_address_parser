@@ -27,11 +27,3 @@ Resources:
             Method: ANY
       Tags:
         'lambda-console:blueprint': microservice-http-endpoint
-    ConfigLambdaPermission:
-      Type: "AWS::Lambda::Permission"
-      DependsOn:
-      - HackdayAddressparser
-      Properties:
-        Action: lambda:HackdayAddressparser
-        FunctionName: !Ref HackdayAddressparser
-        Principal: apigateway.amazonaws.com

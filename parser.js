@@ -4,19 +4,29 @@
 'use strict'
 
 exports.handler = (event, context, callback) => {
-  console.log(' HTTP method (' + event.httpMethod + ')')
+  //console.log(' HTTP method (' + event.httpMethod + ')')
+  console.log(' event : ' + JSON.stringify(event, null, 2))
+  var text = event.text
+  var abbreviation = event.abbreviation
 
-  const text = event.queryStringParameters.text;
-  console.log('address : ' + text )
+  if (text == undefined) {
+    text = event.queryStringParameters.text
+  }
+  if (abbreviation == undefined) {
+    abbreviation = event.queryStringParameters.abbreviation
+  }
+
+  console.log('address : ' + text)
+  console.log('abbreviation : ' + abbreviation)
 
   var parse = require('./locale/en-AU')
   var parsed_address = parse(text)
 
   const response = {
-    statusCode :200,
-    body:JSON.stringify({
-      message:parsed_address
-    })
+    statusCode: 200,
+    body: JSON.stringify(parsed_address),
+    message: JSON.stringify(parsed_address),
+    abbreviation: abbreviation
   }
 
   callback(null, response)

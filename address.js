@@ -125,6 +125,7 @@ proto._extractStreetParts = function(startIndex, splitStreet, streetRegexes, loo
 
   let streetSuffixParts = (splitStreet) ? ' ' + streetParts.slice(streetTypeIndex, streetParts.length).join(' ').replace(/\,/g, '') : '';
   this.street_name = streetName;
+  this.street_type = streetTypeFullName;
   //this.streetType = streetTypeFullName;
   this.street = streetName + ' ' + streetTypeFullName  + streetSuffixParts;
 
@@ -364,7 +365,6 @@ proto.finalize = function() {
   }
   // reset the parts
   this.parts = [];
-
   return this;
 };
 
